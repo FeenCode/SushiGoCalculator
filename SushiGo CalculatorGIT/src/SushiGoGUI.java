@@ -195,7 +195,9 @@ public class SushiGoGUI {
 							frmSushigo.getContentPane().add(ResetButton);
 							playerCount = 6;
 							setPlayerCount(playerCount);
-							switchPanel(panel_5, playerCount);
+							recordMover = 0;
+							setRecordMover(recordMover);
+							switchPanel(namePanel, playerCount);
 						}
 					});
 								btnplayers_3.setFont(new Font("Yu Gothic UI", Font.BOLD, 11));
@@ -355,7 +357,7 @@ public class SushiGoGUI {
 						
 				}
 				if(roundCount == 4) {
-					//make a setPoints and getPoints then make a new Panel for a scoreCard and find out a way to match players to points
+					
 					int P1puddings = Puddings.get(0)+Puddings.get(2)+Puddings.get(4);
 					int P2puddings = Puddings.get(1)+Puddings.get(3)+Puddings.get(5);
 					
@@ -376,10 +378,10 @@ public class SushiGoGUI {
 
 					
 					if(P1points>P2points) {
-						JOptionPane.showMessageDialog(null, "Player1 Wins with " + P1points + " Points!");
+						JOptionPane.showMessageDialog(null, player21.getText() + " Wins with " + P1points + " Points!");
 					}
 					if(P1points<P2points) {
-						JOptionPane.showMessageDialog(null, "Player2 Wins with " + P2points + " Points!");
+						JOptionPane.showMessageDialog(null, player22.getText() +" Wins with " + P2points + " Points!");
 					}
 					if(P1points==P2points) {
 						JOptionPane.showMessageDialog(null, "Its a Tie!");
@@ -507,7 +509,7 @@ public class SushiGoGUI {
 						score53.setText("");
 						score54.setText("");
 						score55.setText("");
-						JOptionPane.showMessageDialog(null, points);
+						
 						Maki.add(MakiSet, Integer.parseInt(maki51.getText()));
 						Maki.add(MakiSet+1, Integer.parseInt(maki52.getText()));
 						Maki.add(MakiSet+2, Integer.parseInt(maki53.getText()));
@@ -558,8 +560,12 @@ public class SushiGoGUI {
 								points.set(j,(points.get(j)-makiPoints));
 							}
 						}
-
+						recordMover = recordMover-playerCount;
+						setRecordMover(recordMover);
+						roundCount = roundCount--;
+						setRoundCount(roundCount);
 					}
+					JOptionPane.showMessageDialog(null, Maki);
 					recordMover = recordMover+playerCount;
 					setRecordMover(recordMover);
 					
@@ -637,12 +643,20 @@ public class SushiGoGUI {
 		lblNewLabel_12.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_12.setForeground(new Color(0, 100, 0));
 		lblNewLabel_12.setFont(new Font("Cooper Black", Font.PLAIN, 20));
-		lblNewLabel_12.setBounds(102, 11, 238, 52);
+		lblNewLabel_12.setBounds(96, 11, 238, 52);
 		panel_4.add(lblNewLabel_12);
 		
 		panel_5 = new JPanel();
 		panel_5.setBackground(Color.DARK_GRAY);
 		MasterPanel.add(panel_5, "name_21972920579000");
+		panel_5.setLayout(null);
+		
+		JLabel lblNewLabel_12_1 = new JLabel("Round 1");
+		lblNewLabel_12_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_12_1.setForeground(new Color(0, 100, 0));
+		lblNewLabel_12_1.setFont(new Font("Cooper Black", Font.PLAIN, 20));
+		lblNewLabel_12_1.setBounds(96, 11, 238, 52);
+		panel_5.add(lblNewLabel_12_1);
 		
 		panel_6 = new JPanel();
 		panel_6.setBackground(Color.DARK_GRAY);
@@ -691,6 +705,14 @@ public class SushiGoGUI {
 					player54.setText(playerNames.get(3));
 					player55.setText(playerNames.get(4));
 					switchPanel(panel_4, playerCount);
+				}
+				if(playerCount == 6) {
+					player51.setText(playerNames.get(0));
+					player52.setText(playerNames.get(1));
+					player53.setText(playerNames.get(2));
+					player54.setText(playerNames.get(3));
+					player55.setText(playerNames.get(4));
+					switchPanel(panel_5, playerCount);
 				}
 			}
 		});

@@ -31,23 +31,6 @@ public class CalculatorTools{
 		
 	}
 
-	public static int variableCleanUp(int variable){
-
-		
-		Scanner dirt = new Scanner(System.in);
-		int cleanVariable = variable;
-		
-		
-		try {
-			cleanVariable = Integer.parseInt(dirt.nextLine());
-		}
-		catch(NumberFormatException e) {
-			System.out.println("\nInvalid Selection, please enter an integer.\n");
-		}
-		
-		
-		return cleanVariable;
-	}
 
 	public static ArrayList<Integer> scoreBoard(ArrayList<Integer> scoreBoard) {
 
